@@ -1,0 +1,94 @@
+/* Home.css */
+/* body{
+  @font-face {
+    font-family: "DefaultFont", sans-serif;
+    src: url('fonts/Roboto-Regular.ttf');
+    font-weight: 500;
+  }
+  font-family: 'DefaultFont';
+} */
+
+/* COMPONENTS */
+.btn-med-default{
+  width: 120px auto;
+  height: 40px;
+  background-color: #adadad;
+  border: 1px solid gray;
+  border-radius: 8px;
+  color: black;
+  font-size: 10pt;
+  transition: transform 0.3s ease-in-out;
+}
+.btn-med-default:hover{
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+
+/* Общий контейнер */
+.home-container {
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Сетка товаров */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 0 auto;
+}
+
+/* Карточка товара */
+.product-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* При наведении на карточку */
+.product-card:hover {
+  transform: translateY(-2pt);
+  cursor: pointer;
+  border: 1px solid rgb(102, 102, 102);
+}
+
+/* Изображение товара */
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  user-select: none;
+}
+
+/* Детали продукта */
+.product-details {
+  padding: 15px;
+}
+
+.product-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.product-price {
+  font-size: 1.1rem;
+  color: #436632;
+  font-weight: bold;
+}

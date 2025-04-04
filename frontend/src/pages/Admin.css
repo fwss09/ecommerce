@@ -1,0 +1,200 @@
+.admin-panel {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-title {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.admin-welcome {
+  color: #7f8c8d;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.add-button {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.add-button:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(0px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: backdrop-filter 0.5s ease, opacity 0.5s ease; /* Плавная анимация */
+}
+
+.modal-overlay.active {
+  backdrop-filter: blur(5px); /* Когда модалка активна */
+  opacity: 1; /* Сделать видимым */
+  pointer-events: auto; /* Разрешить взаимодействие */
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.modal-content h2 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product-form input,
+.product-form textarea {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fafafa;
+    transition: border-color 0.2s ease;
+}
+
+.product-form input:focus,
+.product-form textarea:focus {
+    border-color: #bdc3c7;
+    outline: none;
+}
+
+.product-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.submit-button,
+.cancel-button {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.submit-button {
+    background: #2c3e50;
+    color: white;
+    border: none;
+}
+
+.submit-button:hover {
+    background: #34495e;
+}
+
+.cancel-button {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    color: #7f8c8d;
+}
+
+.cancel-button:hover {
+    background: #f0f0f0;
+}
+
+.success {
+    color: #27ae60;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.error {
+    color: #c0392b;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Сохраненные стили для .form-admin */
+.form-admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.form-admin button {
+    user-select: none;
+    background-color: #fafbfc;
+    box-shadow:
+    rgba(27, 31, 35, 0.04) 0 1px 0,
+    rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    color: #24292e;
+    cursor: pointer;
+    padding: 4px 16px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.form-admin button:hover {
+    background-color: #f3f4f6;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+
+.form-admin button:focus {
+    outline: 1px transparent;
+}
+
+.form-admin input {
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    outline: none;
+}
+
+.error-form {
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+}
