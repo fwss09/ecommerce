@@ -27,7 +27,6 @@ const Admin = () => {
         const currentTime = Math.floor(Date.now() / 1000);
   
         if (payload.exp < currentTime) {
-          // Токен истёк
           localStorage.removeItem('admin_token');
           setIsAdmin(false);
           setError('Сессия истекла. Пожалуйста, войдите снова.');
@@ -72,7 +71,6 @@ const Admin = () => {
     setSuccessMessage('');
     setError('');
 
-    // Создаем форму данных для отправки
     const formData = new FormData();
     formData.append('name', name);
     formData.append('description', description);
@@ -82,7 +80,6 @@ const Admin = () => {
     }
 
     try {
-      // Отправка POST-запроса для добавления товара
       const response = await axios.post('http://localhost:5000/products', formData, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('admin_token')}`,

@@ -6,13 +6,11 @@ import { CreateUserDto } from 'src/dto/create-user.dto';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  // Регистрация
   @Post('register')
   async register(@Body() createUserDto: CreateUserDto) {
     return await this.authService.register(createUserDto);
   }
 
-  // Логин
   @Post('login')
   async login(@Body() loginDto: { email: string, password: string }) {
     console.log('received login-request: ', loginDto)

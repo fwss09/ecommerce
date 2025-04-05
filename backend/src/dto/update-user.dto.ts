@@ -10,5 +10,5 @@ export class UpdateUserDto {
   password: string;
 
   @IsString()
-  role: Role;  // Убедитесь, что это тип Role
+  role: Role;
 }

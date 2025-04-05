@@ -15,7 +15,6 @@ import type { Multer } from 'multer';
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
-  // Получить все продукты (доступно всем)
   @Get()
   async getAllProducts() {
     const products = await this.productsService.getAllProducts();
@@ -25,7 +24,6 @@ export class ProductsController {
     }));
   }
 
-  // Получить продукт по ID (доступно всем)
   @Get(':id')
   async getProductById(@Param('id') id: string): Promise<Product> {
     const product = await this.productsService.getProductById(id);
@@ -35,14 +33,13 @@ export class ProductsController {
     return product;
   }
 
-  // Создать новый продукт (доступно только админам)
   @Post()
-  @UseGuards(JwtAuthGuard, RolesGuard) // Защищаем этот маршрут
-  @Roles('ADMIN') // Только админ может создавать продукты
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('ADMIN')
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination: './img', // Папка для загрузки
+        destination: './img',
         filename: (req, file, callback) => {
           const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
           callback(null, uniqueSuffix + extname(file.originalname));
@@ -58,10 +55,9 @@ export class ProductsController {
     return this.productsService.createProduct(createProductDto.name, createProductDto.description, Number(createProductDto.price), imageUrl);
   }
 
-  // Обновить продукт (доступно только админам)
   @Put(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('ADMIN') // Только админ может обновлять продукты
+  @Roles('ADMIN')
   async updateProduct(
     @Param('id') id: string,
     @Body() updateProductDto: { name: string; description: string; price: number; imageUrl?: string }
@@ -69,10 +65,9 @@ export class ProductsController {
     return this.productsService.updateProduct(id, updateProductDto.name, updateProductDto.description, updateProductDto.price, updateProductDto.imageUrl);
   }
 
-  // Удалить продукт (доступно только админам)
   @Delete(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('ADMIN') // Только админ может удалять продукты
+  @Roles('ADMIN')
   async deleteProduct(@Param('id') id: string): Promise<Product> {
     return this.productsService.deleteProduct(id);
   }

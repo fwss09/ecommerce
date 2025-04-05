@@ -8,14 +8,14 @@ import { Roles } from '../auth/roles.decorator';
 export class ProfileController {
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('USER') // Можно указать роли
+  @Roles('USER')
   getProfile() {
     return { message: 'This is a protected route' };
   }
 
   @Get('admin')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('ADMIN') // Только админ может доступить этот маршрут
+  @Roles('ADMIN')
   getAdminPage() {
     return { message: 'Admin content' };
   }

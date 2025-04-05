@@ -1,6 +1,6 @@
 // src/users/users.controller.ts
 import { Controller, Param, Body, Get, Put, Delete } from '@nestjs/common';
-import { UsersService } from './users.service';  // Импортируем UsersService
+import { UsersService } from './users.service';
 import { User, Role } from '@prisma/client';
 import { UpdateUserDto } from '../dto/update-user.dto';
 
@@ -8,13 +8,11 @@ import { UpdateUserDto } from '../dto/update-user.dto';
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  // Эндпоинт для получения всех пользователей
   @Get()
   async getAllUsers() {
-    return this.usersService.getAllUsers();  // Используем новый метод из UsersService
+    return this.usersService.getAllUsers();
   }
 
-  // Обновление пользователя
   @Put(':id')
   async updateUser(
     @Param('id') id: string,
@@ -24,9 +22,8 @@ export class UsersController {
     return this.usersService.updateUser(id, updateUserDto.email, updateUserDto.password, role);
   }
 
-  // Удаление пользователя
   @Delete(':id')
-  async deleteUser(@Param('id') id: string): Promise<User> {  // id теперь строка
+  async deleteUser(@Param('id') id: string): Promise<User> {
     return this.usersService.deleteUser(id);
   }  
 }

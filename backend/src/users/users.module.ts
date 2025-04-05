@@ -5,8 +5,8 @@ import { UsersController } from './users.controller';
 
 @Module({
   imports: [],
-  providers: [UsersService, PrismaService],  // Добавляем UsersService
-  exports: [UsersService],  // Экспортируем UsersService, чтобы он был доступен в других модулях
+  providers: [UsersService, PrismaService],
+  exports: [UsersService],
   controllers: [UsersController],
 })
 export class UsersModule {}
