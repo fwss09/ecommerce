@@ -9,14 +9,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const token = " "; // Токен
-        
-        const response = await axios.get('http://localhost:5000/products', {
-          headers: {
-            'Authorization': `Bearer ${token}`,  // Токен в заголовке
-          },
-        });
-        
+        const response = await axios.get('http://localhost:5000/products');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -26,6 +19,10 @@ const Home = () => {
     fetchProducts();
   }, []);
   
+  const goToProductPage = (id) => {
+    navigate(`/products/${id}`);
+  };
+
   const goToAdmin = () => {
     navigate('/admin');
   };
@@ -34,15 +31,16 @@ const Home = () => {
     
     <div className="home-container">
       <h1>Products</h1>
-      <button onClick={goToAdmin} className='btn-med-default'>Admin Panel</button>
+      <button onClick={goToAdmin} className='admin-button'>Admin Panel</button>
       <div className="product-grid">
         {products.map((product) => (
-          <div className="product-card" key={product.id}>
+          <div className="product-card" key={product.id} onClick={() => goToProductPage(product.id)}>
             {product.imageUrl && <img src={product.imageUrl} alt={product.name} draggable="false" className="product-image" />}
             <div className="product-details">
               <h3 className="product-name">{product.name}</h3>
               <p className="product-description">{product.description}</p>
               <p className="product-price">{product.price} UAH</p>
+              <button className="product-buy-button">Купить</button>
             </div>
           </div>
         ))}

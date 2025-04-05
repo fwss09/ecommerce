@@ -1,41 +1,44 @@
 .admin-panel {
-  min-height: 100vh;
-  background: #f8f9fa;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    min-height: 100vh;
+    background: #f8f9fa;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .admin-title {
-  color: #2c3e50;
-  font-size: 2.5rem;
-  font-weight: 500;
-  margin-bottom: 10px;
+    color: #2c3e50;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 10px;
 }
 
 .admin-welcome {
-  color: #7f8c8d;
-  font-size: 1.2rem;
-  margin-bottom: 30px;
+    color: #7f8c8d;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
 }
 
-.add-button {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-size: 1.1rem;
-  color: #2c3e50;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+.def-btn {
+    background-color: #fafbfc;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    color: #2c3e50;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin: 10px 0;
 }
 
-.add-button:hover {
-  background: #f0f0f0;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.def-btn:hover {
+    background-color: #f3f4f6;
+    box-shadow: 0 4px 8px rgba(97, 97, 97, 0.1);
+}
+.def-btn:active{
+    transform: scale(0.98);
+    transition: transform 0.1s ease-in-out;
 }
 
 .modal-overlay {
@@ -50,13 +53,13 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    transition: backdrop-filter 0.5s ease, opacity 0.5s ease; /* Плавная анимация */
+    transition: backdrop-filter 0.5s ease, opacity 0.5s ease;
 }
 
 .modal-overlay.active {
-  backdrop-filter: blur(5px); /* Когда модалка активна */
-  opacity: 1; /* Сделать видимым */
-  pointer-events: auto; /* Разрешить взаимодействие */
+    backdrop-filter: blur(5px);
+    opacity: 1;
+    pointer-events: auto; 
 }
 
 .modal-content {
@@ -150,7 +153,6 @@
     text-align: center;
 }
 
-/* Сохраненные стили для .form-admin */
 .form-admin {
     display: flex;
     flex-direction: column;
@@ -197,4 +199,78 @@
     color: red;
     font-size: 16px;
     font-weight: bold;
+}
+.home-button{
+    background-color: #fafbfc;
+    box-shadow:
+    rgba(27, 31, 35, 0.04) 0 1px 0,
+    rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    color: #24292e;
+    cursor: pointer;
+    padding: 4px 16px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.home-button:hover {
+    background-color: #f3f4f6;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+.home-button:active{
+    transform: scale(0.98);
+    transition: transform 0.1s ease-in-out;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+}
+
+.product-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.product-item {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.modal-close-button {
+  background-color: #2a7a2a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.modal-close-button:hover {
+  background-color: #236623;
 }

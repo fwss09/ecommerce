@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Admin.css';
 
@@ -8,12 +9,15 @@ const Admin = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [error, setError] = useState('');
   const [showModal, setShowModal] = useState(false);
-
+  const [showProductsModal, setShowProductsModal] = useState(false);
+  const [products, setProducts] = useState([]);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [image, setImage] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('admin_token');
@@ -98,15 +102,30 @@ const Admin = () => {
     }
   };
 
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/products');
+      setProducts(response.data);
+      setShowProductsModal(true); // Открываем модальное окно
+    } catch (err) {
+      console.error('Ошибка при получении товаров:', err);
+      setError('Не удалось загрузить товары.');
+    }
+  };
   if (isAdmin) {
     return (
       <div className="admin-panel">
+        <button className="home-button" onClick={() => navigate('/')}>
+          Вернуться на главную
+        </button>
         <h1 className="admin-title">Админ-панель</h1>
         <p className="admin-welcome">Добро пожаловать, администратор</p>
-        <button className="add-button" onClick={() => setShowModal(true)}>
+        <button className="def-btn" onClick={() => setShowModal(true)}>
           Добавить товар
         </button>
-
+        <button className="def-btn" onClick={fetchProducts}>
+          Посмотреть товары
+        </button>
         {showModal && (
           <div className={`modal-overlay ${showModal ? 'active' : ''}`}>
             <div className="modal-content">
@@ -149,6 +168,23 @@ const Admin = () => {
               </form>
               {successMessage && <p className="success">{successMessage}</p>}
               {error && <p className="error">{error}</p>}
+            </div>
+          </div>
+        )}
+        {showProductsModal && (
+          <div className="modal-overlay" onClick={() => setShowProductsModal(false)}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <h2>Список товаров</h2>
+              <ul className="product-list">
+                {products.map((product) => (
+                  <li key={product.id} className="product-item">
+                    {product.name} - {product.price} UAH
+                  </li>
+                ))}
+              </ul>
+              <button className="modal-close-button" onClick={() => setShowProductsModal(false)}>
+                Закрыть
+              </button>
             </div>
           </div>
         )}
