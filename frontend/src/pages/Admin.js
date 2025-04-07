@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import axios from 'axios';
 import './Admin.css';
+import './fonts.css'
 
 const Admin = () => {
   const [email, setEmail] = useState('');
@@ -103,7 +105,7 @@ const Admin = () => {
     try {
       const response = await axios.get('http://localhost:5000/products');
       setProducts(response.data);
-      setShowProductsModal(true); // Открываем модальное окно
+      setShowProductsModal(true);
     } catch (err) {
       console.error('Ошибка при получении товаров:', err);
       setError('Не удалось загрузить товары.');
@@ -111,6 +113,12 @@ const Admin = () => {
   };
   if (isAdmin) {
     return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
       <div className="admin-panel">
         <button className="home-button" onClick={() => navigate('/')}>
           Вернуться на главную
@@ -186,30 +194,38 @@ const Admin = () => {
           </div>
         )}
       </div>
+      </motion.div>
     );
   }
   return (
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.5 }}
+  >
     <div className='form-admin'>
-      <h1>Вход в админку</h1>
+      <h1>Admin</h1>
       <form onSubmit={handleLogin}>
         <input
           type="email"
-          placeholder="Почта"
+          placeholder="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input
           type="password"
-          placeholder="Пароль"
+          placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Войти</button>
+        <button type="submit">Enter</button>
       </form>
       {error && <p className='error-form'>{error}</p>}
     </div>
+    </motion.div>
   );
 };
 

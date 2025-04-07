@@ -1,3 +1,6 @@
+body, input, button, textarea, select {
+    font-family: 'MyFont', sans-serif;
+}
 .admin-panel {
     min-height: 100vh;
     background: #f8f9fa;
@@ -161,25 +164,34 @@
     height: 100vh;
 }
 
+.form-admin form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+}
+
 .form-admin button {
     user-select: none;
-    background-color: #fafbfc;
+    background-color: #000000;
     box-shadow:
     rgba(27, 31, 35, 0.04) 0 1px 0,
     rgba(255, 255, 255, 0.25) 0 1px 0 inset;
     box-sizing: border-box;
-    border-radius: 6px;
-    border: 1px solid rgba(27, 31, 35, 0.15);
-    color: #24292e;
+    border-radius: 0px;
+    border: 1px solid #000000;
+    color: white;
     cursor: pointer;
-    padding: 4px 16px;
-    font-size: 14px;
-    margin-top: 10px;
+    padding: 6px 18px;
+    font-size: 15px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .form-admin button:hover {
-    background-color: #f3f4f6;
-    text-decoration: none;
+    background-color: #fff;
+    color: #000000;
     transition-duration: 0.1s;
 }
 
@@ -189,6 +201,7 @@
 
 .form-admin input {
     margin: 10px 0;
+    font-size: 16px;
     padding: 5px;
     border-radius: 4px;
     border: 1px solid rgba(27, 31, 35, 0.15);

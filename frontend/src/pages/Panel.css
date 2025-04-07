@@ -1,0 +1,22 @@
+.top-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: hsla(0, 9%, 96%, 0.5);
+  backdrop-filter: blur(12px);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px;
+  z-index: 1000;
+}
+
+.panel-title {
+  font-size: 1.5rem;
+  margin: 0;
+  margin-left: 10px;
+  user-select: none;
+  cursor: pointer;
+}

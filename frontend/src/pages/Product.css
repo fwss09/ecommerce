@@ -1,8 +1,24 @@
+.product-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 40px;
+  align-items: сenter;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.product-image-container {
+  flex: 1;
+  max-width: 60%;
+}
+
 .product-page {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   text-align: center;
+  margin-top: 60px;
 }
 
 .product-title {
@@ -13,9 +29,24 @@
 
 .product-page-image {
   width: 100%;
-  max-height: 400px;
-  object-fit: cover;
+  height: auto;
   border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+.product-page-image:hover {
+  transform: scale(1.01);
+}
+
+.product-info {
+  flex: 1;
+  max-width: 40%;
+  text-align: left;
+}
+
+.product-title {
+  font-size: 2.5rem;
+  color: #333;
   margin-bottom: 20px;
 }
 
@@ -23,29 +54,32 @@
   font-size: 1.2rem;
   color: #666;
   margin-bottom: 20px;
+  line-height: 1.6;
 }
 
 .product-page-price {
   font-size: 1.5rem;
-  color: #2a7a2a;
+  color: #272727;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
 .product-buy-button {
-  background-color: #2a7a2a;
+  background-color: #000000;
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 0px;
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+  border: 1px solid #000000;
 }
 
 .product-buy-button:hover {
-  background-color: #236623;
+  background-color: #fff;
+  color: #000000;
 }
 
 .modal-overlay {
@@ -82,20 +116,23 @@
 
 .modal-close-button {
   margin-top: 20px;
-  background-color: #2a7a2a;
+  background-color: #000000;
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 0px;
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+  border: 1px solid #000000;
 }
 
 .modal-close-button:hover {
-  background-color: #236623;
+  background-color: #fff;
+  color: #000000;
 }
+
 .back-button {
   position: absolute;
   top: 20px;

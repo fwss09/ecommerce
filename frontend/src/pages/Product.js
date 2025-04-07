@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import axios from 'axios';
 import './Product.css';
+import './Panel.css';
 
 const Product = () => {
   const { id } = useParams();
@@ -42,22 +44,43 @@ const Product = () => {
     setIsModalOpen(false);
   };
 
-  return (
-    <div className="product-page">
-      <button className="back-button" onClick={() => navigate(-1)}>
-        Назад
-      </button>
-      <h1 className="product-title">{product.name}</h1>
-      <img
-        src={`${BASE_URL}${product.imageUrl}`}
-        alt={product.name}
-        className="product-page-image"
-        onClick={openModal}
-      />
-      <p className="product-page-description">{product.description}</p>
-      <p className="product-page-price">{product.price} UAH</p>
-      <button className="product-buy-button">Купить</button>
+  const goToAdmin = () => {
+    navigate('/admin');
+  };  
 
+  return (
+
+    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+    <div className="top-panel">
+      <h1 className="panel-title" onClick={() => navigate(-1)}>My E-Commerce</h1>
+      <button onClick={goToAdmin} className="admin-button">Admin Panel</button>
+    </div>
+    <div className="product-page">
+      {/* <button className="back-button" onClick={() => navigate(-1)}>
+        Назад
+      </button> */}
+      <div className="product-container">
+        <div className="product-image-container">
+          <img
+            src={`${BASE_URL}${product.imageUrl}`}
+            alt={product.name}
+            className="product-page-image"
+            onClick={openModal}
+          />
+        </div>
+        <div className="product-info">
+        <h1 className="product-title">{product.name}</h1>
+          <p className="product-page-description">{product.description}</p>
+          <p className="product-page-price">{Number(product.price).toFixed(2)}₴</p>
+          <button className="product-buy-button">Add to cart</button>
+        </div>
+      </div>
       {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -67,13 +90,15 @@ const Product = () => {
               className="modal-image"
             />
             <button className="modal-close-button" onClick={closeModal}>
-              Закрыть
+              Close
             </button>
           </div>
         </div>
       )}
 
     </div>
+    </motion.div>
+    </>
   );
 };
 
