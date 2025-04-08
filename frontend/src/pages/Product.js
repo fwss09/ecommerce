@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { CartContext } from '../context/CartContext';
 import axios from 'axios';
 import './Product.css';
 import './Panel.css';
@@ -10,6 +11,7 @@ const Product = () => {
   const [product, setProduct] = useState(null);
   const [error, setError] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   const BASE_URL = 'http://localhost:5000';
@@ -44,9 +46,9 @@ const Product = () => {
     setIsModalOpen(false);
   };
 
-  const goToAdmin = () => {
-    navigate('/admin');
-  };  
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
 
   return (
 
@@ -58,8 +60,11 @@ const Product = () => {
       transition={{ duration: 0.5 }}
     >
     <div className="top-panel">
-      <h1 className="panel-title" onClick={() => navigate(-1)}>My E-Commerce</h1>
-      <button onClick={goToAdmin} className="admin-button">Admin Panel</button>
+      <h1 onClick={() => navigate(-1)} className="panel-title">My E-Commerce</h1>
+      <div className="top-panel-actions">
+        <button onClick={() => navigate('/cart')} className="cart-button">Cart</button>
+        <button onClick={() => navigate('/admin')} className="admin-button">Admin Panel</button>
+      </div>
     </div>
     <div className="product-page">
       {/* <button className="back-button" onClick={() => navigate(-1)}>
@@ -78,7 +83,7 @@ const Product = () => {
         <h1 className="product-title">{product.name}</h1>
           <p className="product-page-description">{product.description}</p>
           <p className="product-page-price">{Number(product.price).toFixed(2)}₴</p>
-          <button className="product-buy-button">Add to cart</button>
+          <button onClick={() => handleAddToCart(product)} className="product-buy-button">Add to cart</button>
         </div>
       </div>
       {isModalOpen && (

@@ -164,6 +164,10 @@ body, input, button, textarea, select {
     height: 100vh;
 }
 
+.form-admin h1 {
+    margin-bottom: 20px;
+}
+
 .form-admin form {
     display: flex;
     flex-direction: column;
@@ -192,7 +196,6 @@ body, input, button, textarea, select {
 .form-admin button:hover {
     background-color: #fff;
     color: #000000;
-    transition-duration: 0.1s;
 }
 
 .form-admin button:focus {
@@ -203,9 +206,26 @@ body, input, button, textarea, select {
     margin: 10px 0;
     font-size: 16px;
     padding: 5px;
-    border-radius: 4px;
-    border: 1px solid rgba(27, 31, 35, 0.15);
+    /* border-radius: 4px; */
+    border: 1px solid rgb(0, 0, 0);
+    background-color: #000000;
     outline: none;
+    transition: background-color 0.3s ease-in-out;
+    color: #fff;
+}
+
+.form-admin input:hover{
+    background-color: #fff;
+    color: #000000;
+}
+
+.form-admin input::placeholder{
+    color: white;
+    transition: color 0.3s ease-in-out;
+}
+
+.form-admin input:hover::placeholder{
+    color: #000000;
 }
 
 .error-form {

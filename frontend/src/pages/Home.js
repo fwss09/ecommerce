@@ -27,10 +27,6 @@ const Home = () => {
     navigate(`/products/${id}`);
   };
 
-  const goToAdmin = () => {
-    navigate('/admin');
-  };
-
   return (
     <>
     <div className="page-container">
@@ -43,7 +39,10 @@ const Home = () => {
 
     <div className="top-panel">
       <h1 className="panel-title">My E-Commerce</h1>
-      <button onClick={goToAdmin} className="admin-button">Admin Panel</button>
+      <div className="top-panel-actions">
+        <button onClick={() => navigate('/cart')} className="cart-button">Cart</button>
+        <button onClick={() => navigate('/admin')} className="admin-button">Admin Panel</button>
+      </div>
     </div>
     <div className="home-container">
       <h1 style={{userSelect: "none"}}>Products</h1>
