@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import axios from 'axios';
 import './Admin.css';
 import './fonts.css'
+import './Messages.css'
 
 const Admin = () => {
   const [email, setEmail] = useState('');
@@ -18,7 +19,7 @@ const Admin = () => {
   const [price, setPrice] = useState('');
   const [image, setImage] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
-
+  const [notification, setNotification] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -89,7 +90,8 @@ const Admin = () => {
         },
       });
 
-      setSuccessMessage('Товар успешно добавлен!');
+      setNotification({ message: 'Товар успешно добавлен!', type: 'success' });
+      setTimeout(() => setNotification(null), 5000); 
       setName('');
       setDescription('');
       setPrice('');
@@ -97,7 +99,7 @@ const Admin = () => {
       setShowModal(false);
     } catch (err) {
       console.error('Ошибка при добавлении товара:', err);
-      setError('Не удалось добавить товар. Попробуйте еще раз.');
+      setNotification({ message: 'Не удалось добавить товар. Попробуйте ещё раз', type: 'error' });
     }
   };
 
@@ -112,6 +114,22 @@ const Admin = () => {
     }
   };
   if (isAdmin) {
+    const handleDeleteProduct = async (productId) => {
+      try {
+        await axios.delete(`http://localhost:5000/products/${productId}`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('admin_token')}`,
+          },
+        });
+        setProducts(products.filter(product => product.id !== productId));
+        setNotification({ message: 'Товар успешно удалён!', type: 'success' });
+        setTimeout(() => setNotification(null), 5000);
+      } catch (err) {
+        console.error('Ошибка при удалении товара:', err);
+        setNotification({ message: 'Не удалось удалить товар. Попробуйте еще раз.', type: 'error' });
+        setTimeout(() => setNotification(null), 5000); 
+      }
+    };
     return (
       <motion.div
         initial={{ opacity: 0 }}
@@ -119,6 +137,12 @@ const Admin = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
       >
+      {notification && (
+      <div className={`notification ${notification.type}`}>
+        <p>{notification.message}</p>
+        <button className="close-notification" onClick={() => setNotification(null)}>×</button>
+      </div>
+      )}
       <div className="admin-panel">
         <button className="home-button" onClick={() => navigate('/')}>
           Вернуться на главную
@@ -171,8 +195,8 @@ const Admin = () => {
                   </button>
                 </div>
               </form>
-              {successMessage && <p className="success">{successMessage}</p>}
-              {error && <p className="error">{error}</p>}
+              {/* {successMessage && <p className="success">{successMessage}</p>}
+              {error && <p className="error">{error}</p>} */}
             </div>
           </div>
         )}
@@ -184,6 +208,12 @@ const Admin = () => {
                 {products.map((product) => (
                   <li key={product.id} className="product-item">
                     {product.name} - {product.price} UAH
+                      <button 
+                        className="delete-button" 
+                        onClick={() => handleDeleteProduct(product.id)}
+                      >
+                        Удалить
+                    </button>
                   </li>
                 ))}
               </ul>

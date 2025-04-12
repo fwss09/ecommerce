@@ -3,6 +3,8 @@
 /node_modules
 /build
 /uploads
+/img/*
+!.gitkeep
 
 # Logs
 logs

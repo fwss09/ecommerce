@@ -38,7 +38,7 @@ const Home = () => {
     >
 
     <div className="top-panel">
-      <h1 className="panel-title">My E-Commerce</h1>
+      <h1 className="panel-title">Anika</h1>
       <div className="top-panel-actions">
         <button onClick={() => navigate('/cart')} className="cart-button">Cart</button>
         <button onClick={() => navigate('/admin')} className="admin-button">Admin Panel</button>
@@ -53,8 +53,8 @@ const Home = () => {
             <div className="product-details">
               <h3 className="product-name">{product.name}</h3>
               <p className="product-description">{product.description}</p>
-              <p className="product-price">{Number(product.price).toFixed(2)}₴</p>
-              {/* <button className="product-buy-button">Купить</button> */}
+              <p className="product-price">{Number(product.price).toFixed(2)}<span className="home-currency-symbol">₴</span></p>
+              {/* <button className="product-buy-button">Buy</button> */}
             </div>
           </div>
         ))}

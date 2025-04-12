@@ -60,7 +60,7 @@ const Product = () => {
       transition={{ duration: 0.5 }}
     >
     <div className="top-panel">
-      <h1 onClick={() => navigate(-1)} className="panel-title">My E-Commerce</h1>
+      <h1 onClick={() => navigate(-1)} className="panel-title">Anika</h1>
       <div className="top-panel-actions">
         <button onClick={() => navigate('/cart')} className="cart-button">Cart</button>
         <button onClick={() => navigate('/admin')} className="admin-button">Admin Panel</button>
@@ -82,7 +82,7 @@ const Product = () => {
         <div className="product-info">
         <h1 className="product-title">{product.name}</h1>
           <p className="product-page-description">{product.description}</p>
-          <p className="product-page-price">{Number(product.price).toFixed(2)}₴</p>
+          <p className="product-page-price">{Number(product.price).toFixed(2)}<span className="currency-symbol">₴</span></p>
           <button onClick={() => handleAddToCart(product)} className="product-buy-button">Add to cart</button>
         </div>
       </div>

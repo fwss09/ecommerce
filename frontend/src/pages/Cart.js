@@ -21,7 +21,7 @@ const Cart = () => {
       transition={{ duration: 0.5 }}
     >
     <div className="top-panel">
-      <h1 onClick={() => navigate(-1)} className="panel-title">My E-Commerce</h1>
+      <h1 onClick={() => navigate(-1)} className="panel-title">Anika</h1>
       <div className="top-panel-actions">
         <button onClick={() => navigate('/cart')} className="cart-button">Cart</button>
         <button onClick={() => navigate('/admin')} className="admin-button">Admin Panel</button>
@@ -50,6 +50,14 @@ const Cart = () => {
       )}
     </div>
     </motion.div>
+        <footer className="footer">
+      <p>© 2025 My E-Commerce. All rights reserved.</p>
+      <div className="footer-links">
+        <a href="/about">About Us</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy">Privacy Policy</a>
+      </div>
+    </footer>
     </>
   );
 };

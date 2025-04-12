@@ -54,7 +54,7 @@
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 1.3rem;
   color: #333;
   margin-bottom: 30px;
 }
@@ -126,6 +126,12 @@ h1 {
   margin-top: auto;
   text-align: left;
 }
+
+.home-currency-symbol{
+  font-size: 1.1rem;
+  margin-left: 4px;
+}
+
 .product-buy-button {
   background-color: #2a7a2a;
   color: #fff;

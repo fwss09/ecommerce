@@ -64,6 +64,11 @@
   margin-bottom: 20px;
 }
 
+.currency-symbol{
+  margin-left: 5px;
+  font-size: 1.4rem;
+}
+
 .product-buy-button {
   background-color: #000000;
   color: #fff;
