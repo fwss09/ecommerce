@@ -113,6 +113,12 @@ const Admin = () => {
       setError('Не удалось загрузить товары.');
     }
   };
+
+
+
+
+
+
   if (isAdmin) {
     const handleDeleteProduct = async (productId) => {
       try {
@@ -227,6 +233,16 @@ const Admin = () => {
       </motion.div>
     );
   }
+
+
+
+
+
+
+
+
+
+  
   return (
     <motion.div
     initial={{ opacity: 0 }}

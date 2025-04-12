@@ -1,5 +1,6 @@
 node_modules/
 build/
 dist/
-backend/img/*
+/img/*
+!.gitkeep
 renders/

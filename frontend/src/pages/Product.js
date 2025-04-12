@@ -12,6 +12,7 @@ const Product = () => {
   const [error, setError] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { addToCart } = useContext(CartContext);
+  const [notification, setNotification] = useState(null);
   const navigate = useNavigate();
 
   const BASE_URL = 'http://localhost:5000';
@@ -35,7 +36,7 @@ const Product = () => {
   }
 
   if (!product) {
-    return <div className="loading">Загрузка...</div>;
+    return <div className="loading"> </div>;
   }
 
   const openModal = () => {
@@ -48,6 +49,8 @@ const Product = () => {
 
   const handleAddToCart = (product) => {
     addToCart(product);
+    setNotification({ message: 'Item added to cart', type: 'success' });
+    setTimeout(() => setNotification(null), 5000);
   };
 
   return (
@@ -59,6 +62,12 @@ const Product = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
+    {notification && (
+      <div className={`notification ${notification.type}`}>
+        <p>{notification.message}</p>
+        <button className="close-notification" onClick={() => setNotification(null)}>×</button>
+      </div>
+    )}
     <div className="top-panel">
       <h1 onClick={() => navigate(-1)} className="panel-title">Anika</h1>
       <div className="top-panel-actions">

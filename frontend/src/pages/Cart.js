@@ -50,14 +50,6 @@ const Cart = () => {
       )}
     </div>
     </motion.div>
-        <footer className="footer">
-      <p>© 2025 My E-Commerce. All rights reserved.</p>
-      <div className="footer-links">
-        <a href="/about">About Us</a>
-        <a href="/contact">Contact</a>
-        <a href="/privacy">Privacy Policy</a>
-      </div>
-    </footer>
     </>
   );
 };

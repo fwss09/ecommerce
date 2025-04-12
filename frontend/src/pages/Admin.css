@@ -24,24 +24,19 @@ body, input, button, textarea, select {
 }
 
 .def-btn {
-    background-color: #fafbfc;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    color: #fff;
+    background-color: #000000;
+    border: 1px solid #000000;
     padding: 12px 24px;
     font-size: 1.1rem;
-    color: #2c3e50;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     margin: 10px 0;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .def-btn:hover {
-    background-color: #f3f4f6;
-    box-shadow: 0 4px 8px rgba(97, 97, 97, 0.1);
-}
-.def-btn:active{
-    transform: scale(0.98);
-    transition: transform 0.1s ease-in-out;
+    background-color: #fff;
+    color: #000000;
 }
 
 .modal-overlay {
@@ -118,30 +113,28 @@ body, input, button, textarea, select {
 .submit-button,
 .cancel-button {
     padding: 10px 20px;
-    border-radius: 6px;
     font-size: 1rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.3s ease-in-out;
+    border: 1px solid #000000;
 }
 
 .submit-button {
-    background: #2c3e50;
-    color: white;
-    border: none;
+    background-color: #000000;
+    color: #fff;
 }
 
 .submit-button:hover {
-    background: #34495e;
+    background-color: #fff;
+    color: #000000;
 }
 
 .cancel-button {
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    color: #7f8c8d;
+    background-color: #fff;
 }
 
 .cancel-button:hover {
-    background: #f0f0f0;
+    background-color: #f1eeee;
 }
 
 .success {
