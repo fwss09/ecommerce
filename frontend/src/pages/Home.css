@@ -81,6 +81,8 @@ h1 {
   cursor: pointer;
   border: 1px solid rgba(230, 230, 230, 0.404);
   transition: border 0.3s ease-in-out;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 .product-card:hover{
   border: 1px solid black;
@@ -147,4 +149,21 @@ h1 {
 
 .product-buy-button:hover {
   background-color: #236623;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .product-card {
+    padding: 12px;
+  }
+
+  .product-image {
+    max-width: 100%;
+    height: auto;
+  }
 }

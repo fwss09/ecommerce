@@ -8,7 +8,10 @@ const Cart = () => {
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
   const navigate = useNavigate();
 
-  const BASE_URL = 'http://localhost:5000';
+  const BASE_URL = 
+    window.location.hostname === 'localhost' 
+      ? 'http://localhost:5000' 
+      : `http://${window.location.hostname}:5000`; 
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0); 
 
@@ -45,7 +48,10 @@ const Cart = () => {
           <div className="cart-total">
             <h2>Total: {total.toFixed(2)}₴</h2>
           </div>
-          <button onClick={clearCart}>Clear Cart</button>
+          <div className="cart-actions">
+            <button onClick={clearCart}>Continue</button>
+            <button onClick={clearCart}>Clear Cart</button>
+          </div>
         </div>
       )}
     </div>

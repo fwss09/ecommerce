@@ -9,12 +9,21 @@ import './Footer.css';
 const Home = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  const hostn =
+  window.location.hostname === 'localhost'
+    ? 'http://localhost:5000'
+    : 'http://192.168.0.100:5000';
   
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/products');
-        setProducts(response.data);
+        const response = await axios.get(`${hostn}/products`);
+        const updatedProducts = response.data.map(product => ({
+          ...product,
+          imageUrl: product.imageUrl.replace('http://localhost:5000', hostn)
+        }));
+    
+        setProducts(updatedProducts);
       } catch (error) {
         console.error('Error fetching products:', error);
       }

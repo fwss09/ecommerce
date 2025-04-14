@@ -162,3 +162,35 @@
   transform: scale(0.98);
   transition: transform 0.1s ease-in-out;
 }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .product-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-image-container,
+  .product-info {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .product-title {
+    font-size: 20px;
+  }
+
+  .product-page-description {
+    font-size: 14px;
+  }
+
+  .product-page-price {
+    font-size: 18px;
+  }
+
+  .product-buy-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+}

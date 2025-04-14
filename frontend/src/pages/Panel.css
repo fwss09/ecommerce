@@ -1,3 +1,7 @@
+h1, button {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
 .top-panel {
   position: fixed;
   top: 0;
@@ -58,4 +62,12 @@
 .admin-button:hover {
   background-color: #fff;
   color: #000000;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .top-panel {
+    background-color: rgb(255, 255, 255);
+    backdrop-filter: none;
+  }
 }

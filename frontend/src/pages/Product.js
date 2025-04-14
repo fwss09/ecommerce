@@ -15,12 +15,15 @@ const Product = () => {
   const [notification, setNotification] = useState(null);
   const navigate = useNavigate();
 
-  const BASE_URL = 'http://localhost:5000';
+  const BASE_URL = 
+    window.location.hostname === 'localhost' 
+      ? 'http://localhost:5000' 
+      : `http://${window.location.hostname}:5000`; 
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/products/${id}`);
+        const response = await axios.get(`${BASE_URL}/products/${id}`);
         setProduct(response.data);
       } catch (error) {
         console.error('Error fetching product:', error);
