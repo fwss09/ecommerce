@@ -13,17 +13,15 @@ export class AuthService {
   ) {}
 
   async register(createUserDto: CreateUserDto) {
-    const { email, password } = createUserDto;
-
+    const { email, password, name, phone } = createUserDto;
+    console.log('Received phone:', phone);
     const existingUser = await this.usersService.getUserByEmail(email);
     if (existingUser) {
       throw new Error('User already exists');
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = await this.usersService.createUser(email, hashedPassword);
-
+    const user = await this.usersService.createUser(email, hashedPassword, name, phone!);
     const payload = { email: user.email, sub: user.id, role: user.role };
     const token = this.jwtService.sign(payload);
 
@@ -41,8 +39,9 @@ export class AuthService {
     }
   
     const payload = { email: user.email, sub: user.id, role: user.role };
-    const expiresIn = user.role === 'ADMIN' ? '2h' : '10d';
-    const token = this.jwtService.sign(payload, { expiresIn });
+    // const expiresIn = user.role === 'ADMIN' ? '2h' : '10d';
+    // const token = this.jwtService.sign(payload, { expiresIn });
+    const token = this.jwtService.sign(payload, { expiresIn: '1d' });
   
     return { user, access_token: token };
   }

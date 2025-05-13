@@ -13,19 +13,23 @@ export class UsersService {
     });
   }
 
-  async createUser(email: string, hashedPassword: string): Promise<User> {
+  async createUser(email: string, hashedPassword: string, name: string, phone: string, ): Promise<User> {
     return this.prisma.user.create({
       data: {
         email,
         password: hashedPassword,
+        name,
+        phone
       },
     });
   }
 
-  async updateUser(id: string, email: string, password: string, role: Role): Promise<User> {
+  async updateUser(id: string, name: string, phone: string, email: string, password: string, role: Role): Promise<User> {
     return this.prisma.user.update({
       where: { id },
       data: {
+        name,
+        phone,
         email,
         password,
         role,

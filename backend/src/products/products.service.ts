@@ -7,8 +7,29 @@ import { Product } from '@prisma/client';
 export class ProductsService {
   constructor(private prisma: PrismaService) {}
 
-  async getAllProducts(): Promise<Product[]> {
-    return this.prisma.product.findMany();
+  async getAllProducts(sort?: string): Promise<Product[]> {
+    let orderBy;
+  
+    switch (sort) {
+      case 'asc':
+        orderBy = { price: 'asc' };
+        break;
+      case 'desc':
+        orderBy = { price: 'desc' };
+        break;
+      case 'newest':
+        orderBy = { createdAt: 'desc' };
+        break;
+      case 'oldest':
+        orderBy = { createdAt: 'asc' };
+        break;
+      default:
+        orderBy = undefined;
+    }
+  
+    return this.prisma.product.findMany({
+      ...(orderBy && { orderBy }),
+    });
   }
 
   async getProductById(id: string): Promise<Product | null> {

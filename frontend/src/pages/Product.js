@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CartContext } from '../context/CartContext';
 import axios from 'axios';
+import TopPanel from './TopPanel'; 
 import './Product.css';
 import './Panel.css';
 
@@ -13,6 +14,7 @@ const Product = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { addToCart } = useContext(CartContext);
   const [notification, setNotification] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
   const BASE_URL = 
@@ -21,6 +23,9 @@ const Product = () => {
       : `http://${window.location.hostname}:5000`; 
 
   useEffect(() => {
+    const storedUserData = localStorage.getItem('user_data');
+    setIsAuthenticated(!!storedUserData);
+    
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`${BASE_URL}/products/${id}`);
@@ -51,8 +56,10 @@ const Product = () => {
   };
 
   const handleAddToCart = (product) => {
+    if (!product.inStock) return; 
+
     addToCart(product);
-    setNotification({ message: 'Item added to cart', type: 'success' });
+    setNotification({ message: 'Товар додано до кошика', type: 'success' });
     setTimeout(() => setNotification(null), 5000);
   };
 
@@ -71,13 +78,7 @@ const Product = () => {
         <button className="close-notification" onClick={() => setNotification(null)}>×</button>
       </div>
     )}
-    <div className="top-panel">
-      <h1 onClick={() => navigate(-1)} className="panel-title">Anika</h1>
-      <div className="top-panel-actions">
-        <button onClick={() => navigate('/cart')} className="cart-button">Cart</button>
-        <button onClick={() => navigate('/admin')} className="admin-button">Admin Panel</button>
-      </div>
-    </div>
+    <TopPanel isAuthenticated={isAuthenticated} />
     <div className="product-page">
       {/* <button className="back-button" onClick={() => navigate(-1)}>
         Назад
@@ -92,10 +93,23 @@ const Product = () => {
           />
         </div>
         <div className="product-info">
-        <h1 className="product-title">{product.name}</h1>
+          <h1 className="product-title">{product.name}</h1>
+          <p
+            className={`product-page-availability ${
+              product.inStock ? 'in-stock' : 'out-of-stock'
+            }`}
+          >
+            {product.inStock ? 'В наявності' : 'Немає в наявності'}
+          </p>
           <p className="product-page-description">{product.description}</p>
           <p className="product-page-price">{Number(product.price).toFixed(2)}<span className="currency-symbol">₴</span></p>
-          <button onClick={() => handleAddToCart(product)} className="product-buy-button">Add to cart</button>
+          <button
+            onClick={() => handleAddToCart(product)}
+            className="product-buy-button"
+            disabled={!product.inStock}
+          >
+            {product.inStock ? 'Додати до кошика' : 'Немає в наявності'}
+          </button>
         </div>
       </div>
       {isModalOpen && (
@@ -107,7 +121,7 @@ const Product = () => {
               className="modal-image"
             />
             <button className="modal-close-button" onClick={closeModal}>
-              Close
+              Закрити
             </button>
           </div>
         </div>

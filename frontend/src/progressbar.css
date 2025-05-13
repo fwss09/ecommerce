@@ -1,0 +1,12 @@
+html #nprogress .bar {
+  background: rgb(0, 0, 0) !important; /* !important помогает перебить */
+  height: 4px !important;
+}
+
+html #nprogress .peg {
+  box-shadow: 0 0 10px rgb(0, 0, 0), 0 0 5px rgb(5, 5, 5) !important;
+}
+
+html #nprogress .spinner {
+  display: none !important;
+}

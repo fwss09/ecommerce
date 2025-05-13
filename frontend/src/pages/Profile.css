@@ -1,0 +1,271 @@
+.profile-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 20px;
+  background-color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+
+.msg-create-acc p {
+  max-width: 300px;
+  cursor: pointer;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.span-create-account
+{
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 400;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.login-form h1,
+.user-info h1 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.login-form input {
+  margin: 9px 0;
+  font-size: 16px;
+  padding: 5px;
+  /* border-radius: 4px; */
+  border: 1px solid rgb(0, 0, 0);
+  background-color: #000000;
+  outline: none;
+  transition: background-color 0.3s ease-in-out;
+  color: #fff;
+}
+.login-form input:hover {
+  background-color: #fff;
+  color: #000000;
+}
+.login-form input::placeholder {
+  color: white;
+  transition: color 0.3s ease-in-out;
+}
+.login-form input:hover::placeholder {
+  color: #000000;
+}
+
+.login-form button {
+  user-select: none;
+  background-color: #000000;
+  box-sizing: border-box;
+  border-radius: 0px;
+  border: 1px solid #000000;
+  color: white;
+  cursor: pointer;
+  padding: 6px 18px;
+  font-size: 14px;
+  margin-top: 7px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.register-form button:hover {
+  background-color: #fff;
+  color: #000000;
+}
+
+.register-form button:focus {
+  outline: 1px transparent;
+}
+
+.action-button {
+  position: relative;
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease-in-out;
+  border: 1px solid #000000;
+  margin-top: 20px;
+}
+
+.action-button:hover {
+  background-color: #fff;
+  color: #000000;
+}
+
+.error-message {
+  color: #ff4d4d;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.user-info {
+  width: 100%;
+  text-align: left;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.label {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+  flex: 1;
+}
+
+.order-label {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.value {
+  font-size: 14px;
+  color: #333;
+  flex: 2;
+  text-align: right;
+}
+
+.orders-list h2 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000;
+  margin: 20px 0 10px;
+  text-align: left;
+}
+
+.orders-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.orders-list li {
+  margin: 10px 0;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.orders-list li:last-child {
+  border-bottom: none;
+}
+
+.order-header {
+  cursor: pointer;
+}
+
+.order-header .info-row {
+  position: relative;
+  padding-right: 20px;
+}
+
+.arrow {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+.arrow.down {
+  transform: rotate(0deg);
+}
+
+.arrow.up {
+  transform: rotate(180deg);
+}
+
+.order-details {
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+.order-items {
+  margin-top: 10px;
+}
+
+.order-items ul {
+  padding-left: 0;
+}
+
+.order-items li {
+  padding: 5px 0;
+  border: none;
+}
+
+.order-items .info-row {
+  margin: 5px 0;
+}
+
+.no-orders {
+  font-size: 14px;
+  color: #666;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.register-link {
+  font-size: 12px;
+  color: #000;
+  cursor: pointer;
+  margin-top: 10px;
+  text-align: left;
+  display: block;
+  text-decoration: underline;
+}
+
+.register-link:hover {
+  color: #666;
+}
+
+.admin-panel-link {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-decoration: none;
+  color: #000;
+  font-size: 12px;
+}
+
+.admin-panel-link:hover {
+  text-decoration: underline;
+}
+
+.status-pending {
+  color: #f39c12;
+}
+
+.status-processing {
+  color: #3498db;
+}
+
+.status-shipped {
+  color: #8e44ad;
+}
+
+.status-delivered {
+  color: #2ecc71;
+}
+
+.status-canceled {
+  color: #e74c3c;
+}
+

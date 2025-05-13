@@ -4,6 +4,7 @@ import { ProductsService } from './products.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Product } from '@prisma/client';
 import { UseGuards } from '@nestjs/common';
+import { Query } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RolesGuard } from '../auth/roles.guard';
 import { Roles } from '../auth/roles.decorator';
@@ -16,8 +17,8 @@ export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   @Get()
-  async getAllProducts() {
-    const products = await this.productsService.getAllProducts();
+  async getAllProducts(@Query('sort') sort: string) {
+    const products = await this.productsService.getAllProducts(sort);
     return products.map(product => ({
       ...product,
       imageUrl: product.imageUrl ? `http://localhost:5000${product.imageUrl}` : null,

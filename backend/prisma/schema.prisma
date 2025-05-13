@@ -10,10 +10,19 @@ datasource db {
 
 model User {
   id        String   @id @default(uuid())
+  name      String   @default("User")
+  phone     String?
   email     String   @unique
   password  String
   role      Role     @default(USER)
   createdAt DateTime @default(now())
+  orders    Order[]
+}
+
+
+enum Role {
+  USER
+  ADMIN
 }
 
 model Product {
@@ -21,12 +30,62 @@ model Product {
   name        String
   description String
   price       Float
+  inStock     Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   imageUrl    String?
+
+  orderItems  OrderItem[]
 }
 
-enum Role {
-  USER
-  ADMIN
+model Order {
+  id              String      @id @default(cuid())
+  userId          String
+  user            User        @relation(fields: [userId], references: [id])
+  fullName        String
+  phoneNumber     String
+  email           String
+  shippingAddress String
+  totalPrice      Float
+  status          OrderStatus @default(PENDING)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  items           OrderItem[]
+}
+
+model GuestOrder {
+  id              String      @id @default(cuid())
+  fullName        String
+  phoneNumber     String
+  email           String
+  shippingAddress String
+  totalPrice      Float
+  status          OrderStatus @default(PENDING)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  items           OrderItem[]
+}
+
+model OrderItem {
+  id             String     @id @default(cuid())
+  productId      String
+  quantity       Int
+  price          Float
+
+  orderId        String?
+  guestOrderId   String?
+
+  product        Product    @relation(fields: [productId], references: [id])
+  order          Order?     @relation(fields: [orderId], references: [id])
+  guestOrder     GuestOrder? @relation(fields: [guestOrderId], references: [id])
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELED
 }

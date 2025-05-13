@@ -13,7 +13,10 @@
     "@nestjs/common": "^11.0.12",
     "@nestjs/core": "^11.0.12",
     "@nestjs/platform-express": "^11.0.12",
-    "framer-motion": "^12.6.3"
+    "framer-motion": "^12.6.3",
+    "nprogress": "^0.2.0",
+    "react-hook-form": "^7.56.3",
+    "react-input-mask": "^2.0.4"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.5",

@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import TopPanel from './TopPanel'; 
 import './Home.css';
 import './Panel.css';
 import './Footer.css';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const [sortOrder, setSortOrder] = useState('default');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
   const hostn =
   window.location.hostname === 'localhost'
@@ -15,23 +18,29 @@ const Home = () => {
     : 'http://192.168.0.100:5000';
   
   useEffect(() => {
+    const storedUserData = localStorage.getItem('user_data');
+    setIsAuthenticated(!!storedUserData);
+
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`${hostn}/products`);
+        const params = sortOrder !== 'default' ? { sort: sortOrder } : {};
+        const response = await axios.get(`${hostn}/products`, { params });
+  
         const updatedProducts = response.data.map(product => ({
           ...product,
-          imageUrl: product.imageUrl.replace('http://localhost:5000', hostn)
+          imageUrl: product.imageUrl?.replace('http://localhost:5000', hostn)
         }));
-    
+  
         setProducts(updatedProducts);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     };
-    
-    fetchProducts();
-  }, []);
   
+    fetchProducts();
+
+  }, [sortOrder, hostn]);
+
   const goToProductPage = (id) => {
     navigate(`/products/${id}`);
   };
@@ -46,21 +55,36 @@ const Home = () => {
       transition={{ duration: 0.5 }}
     >
 
-    <div className="top-panel">
-      <h1 className="panel-title">Anika</h1>
-      <div className="top-panel-actions">
-        <button onClick={() => navigate('/cart')} className="cart-button">Cart</button>
-        <button onClick={() => navigate('/admin')} className="admin-button">Admin Panel</button>
-      </div>
-    </div>
+    <TopPanel isAuthenticated={isAuthenticated} />
     <div className="home-container">
-      <h1 style={{userSelect: "none"}}>Products</h1>
+      <h1 style={{userSelect: "none"}}>Товари</h1>
+      <div className="sort-container">
+        <label htmlFor="sort">Сортування:</label>
+        <select
+          id="sort"
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+          className="sort-select"
+        >
+          <option value="default">За замовчуванням</option>
+          <option value="asc">Від дешевих до дорогих</option>
+          <option value="desc">Від дорогих до дешевих</option>
+          <option value="newest">За новизною</option>
+        </select>
+      </div>
       <div className="product-grid">
         {products.map((product) => (
           <div className="product-card" key={product.id} onClick={() => goToProductPage(product.id)}>
             {product.imageUrl && <img src={product.imageUrl} alt={product.name} draggable="false" className="product-image" />}
             <div className="product-details">
               <h3 className="product-name">{product.name}</h3>
+              <p
+                className={`product-availability ${
+                  product.inStock ? 'in-stock' : 'out-of-stock'
+                }`}
+              >
+                {product.inStock ? 'В наявності' : 'Немає в наявності'}
+              </p>
               <p className="product-description">{product.description}</p>
               <p className="product-price">{Number(product.price).toFixed(2)}<span className="home-currency-symbol">₴</span></p>
               {/* <button className="product-buy-button">Buy</button> */}
